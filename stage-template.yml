@@ -1,0 +1,30 @@
+parameters:
+- name: name  
+- name: dependsOn
+- name: env
+- name: appName 
+
+stages:
+- stage: ${{parameters.name}}
+  displayName: 'Deploy to the test environment'
+  dependsOn: ${{parameters.dependsOn}}
+  #condition: eq(variables['Build.Reason'], 'Schedule')
+  jobs:
+  - deployment: Deploy
+    pool:
+      vmImage: 'ubuntu-18.04'
+    environment: ${{parameters.env}}
+    variables:
+    - group: 'Release'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: drop
+          - task: AzureWebApp@1
+            displayName: 'Azure App Service Deploy: website'
+            inputs:
+              azureSubscription: 'tailspin-deploy'
+              appName: ${{parameters.appName}}
+              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
