@@ -78,20 +78,20 @@ stages:
   parameters:
     name: Dev
     dependsOn: Build
-    env: dev
-    appName: dev-tailspin
+    env: 'dev'
+    appName: 'dev-tailspin'
 
 - template: stage-template.yml
   parameters:
     name: Test
     dependsOn: Dev
-    env: test
-    appName: test-tailspin
+    env: 'test'
+    appName: 'test-tailspin'
 
 - template: stage-template.yml
   parameters:
     name: Staging
     dependsOn: Test
-    env: staging
-    appName: staging-tailspin
+    env: 'staging'
+    appName: 'staging-tailspin'
 

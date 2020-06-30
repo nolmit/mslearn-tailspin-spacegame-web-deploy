@@ -6,7 +6,7 @@ parameters:
 
 stages:
 - stage: ${{parameters.name}}
-  displayName: 'Deploy to the test environment'
+  displayName: 'Deploy to the ${{parameters.name}} environment'
   dependsOn: ${{parameters.dependsOn}}
   #condition: eq(variables['Build.Reason'], 'Schedule')
   jobs:
@@ -14,8 +14,6 @@ stages:
     pool:
       vmImage: 'ubuntu-18.04'
     environment: ${{parameters.env}}
-    variables:
-    - group: 'Release'
     strategy:
       runOnce:
         deploy:
