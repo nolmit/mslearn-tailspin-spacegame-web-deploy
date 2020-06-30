@@ -99,7 +99,7 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Azure App Service Deploy: website'
             inputs:
-              azureSubscription: '$(subscription)'
+              azureSubscription: tailspin-deploy
               appName: '$(dev)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
 
@@ -123,6 +123,6 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Azure App Service Deploy: website'
             inputs:
-              azureSubscription: '$(subscription)'
+              azureSubscription: tailspin-deploy
               appName: '$(test)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
