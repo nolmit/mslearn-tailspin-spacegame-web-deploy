@@ -124,7 +124,7 @@ stages:
             displayName: 'Azure App Service Deploy: website'
             inputs:
               azureSubscription: 'tailspin-deploy'
-              appName: '$(WebAppNameTest)'
+              appName: '$(test)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
 
 - stage: 'Staging'
